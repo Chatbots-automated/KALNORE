@@ -11,7 +11,11 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex">
             <Link to="/" className="flex-shrink-0 flex items-center">
-              <span className="text-2xl font-bold text-[#9bc329]">Kalnorė</span>
+              <img 
+                src="https://kalnore.lt/wp-content/uploads/2021/01/logo-UAB-Kalnore.png" 
+                alt="Kalnorė" 
+                className="h-12 w-auto"
+              />
             </Link>
           </div>
           

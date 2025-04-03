@@ -8,7 +8,11 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-xl font-bold mb-4">Kalnorė</h3>
+            <img 
+              src="https://kalnore.lt/wp-content/uploads/2021/01/logo-UAB-Kalnore.png" 
+              alt="Kalnorė" 
+              className="h-12 w-auto mb-4"
+            />
             <p className="text-gray-400">
               Žemės ūkio technikos ekspertai nuo 2006 metų
             </p>
@@ -36,13 +40,28 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Socialiniai tinklai</h4>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-[#9bc329]">
+              <a 
+                href="https://www.facebook.com/Kalnore.lt" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-gray-400 hover:text-[#9bc329]"
+              >
                 <Facebook size={24} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-[#9bc329]">
+              <a 
+                href="https://www.instagram.com/kalnore.lt/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-gray-400 hover:text-[#9bc329]"
+              >
                 <Instagram size={24} />
               </a>
-              <a href="#" className="text-gray-400 hover:text-[#9bc329]">
+              <a 
+                href="https://www.linkedin.com/company/kalnor%C4%97/about/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-gray-400 hover:text-[#9bc329]"
+              >
                 <Linkedin size={24} />
               </a>
             </div>
