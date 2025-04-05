@@ -1,6 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Shield, Leaf, BarChart3, Sun } from 'lucide-react';
+import { Shield, Leaf, BarChart3, Sun, ArrowRight, Check } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import StatCounter from '../components/StatCounter';
 
 const PlasticSleeves = () => {
@@ -27,6 +28,17 @@ const PlasticSleeves = () => {
     }
   ];
 
+  const features = [
+    "Tinka įvairiems grūdams ir kultūroms",
+    "Minimali investicija į infrastruktūrą",
+    "Greitas įdiegimas ir pradėjimas",
+    "Lengvas transportavimas",
+    "Apsauga nuo kenkėjų",
+    "Ekonomiškas sprendimas",
+    "Lankstus talpos didinimas",
+    "Mažos eksploatacijos išlaidos"
+  ];
+
   return (
     <>
       <Helmet>
@@ -45,9 +57,16 @@ const PlasticSleeves = () => {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">Plastiko Rankovės</h1>
-            <p className="text-xl text-gray-300">
+            <p className="text-xl text-gray-300 mb-8">
               Modernus ir ekonomiškas grūdų saugojimo sprendimas, leidžiantis efektyviai valdyti derlių be brangių sandėlių.
             </p>
+            <Link
+              to="/kontaktai"
+              className="inline-flex items-center px-6 py-3 bg-[#9bc329] text-white rounded-lg hover:bg-opacity-90 transition-colors group"
+            >
+              Sužinoti daugiau
+              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+            </Link>
           </div>
         </div>
       </div>
@@ -59,16 +78,31 @@ const PlasticSleeves = () => {
               <p className="text-gray-600 leading-relaxed mb-6">
                 Grūdų saugojimas plastiko rankovėse yra modernus, patikrintas ir visame pasaulyje taikomas metodas, leidžiantis saugiai laikyti derlių lauko sąlygomis be poreikio statyti brangius sandėlius. Ši technologija ypač išplito Argentinoje, kur daugiau nei pusė visų grūdų yra saugoma būtent šiuo būdu.
               </p>
-              <p className="text-gray-600 leading-relaxed mb-6">
-                Naudojant plastiko rankoves, ūkininkai gali lanksčiai plėsti saugojimo talpą pagal sezono derlių, nepriklausyti nuo komercinių sandėlių ir priimti palankesnius pardavimo sprendimus nebijodami laiko spaudimo. Rankovės sudaro anaerobinę aplinką – jose beveik nėra deguonies, tačiau gausu anglies dioksido, kas natūraliai apsaugo grūdus nuo vabzdžių, pelėsių ir kitų veiksnių be chemikalų.
+              <p className="text-gray-600 leading-relaxed mb-8">
+                Naudojant plastiko rankoves, ūkininkai gali lanksčiai plėsti saugojimo talpą pagal sezono derlių, nepriklausyti nuo komercinių sandėlių ir priimti palankesnius pardavimo sprendimus nebijodami laiko spaudimo.
               </p>
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  to="/technika"
+                  className="inline-flex items-center px-6 py-3 bg-[#9bc329] text-white rounded-lg hover:bg-opacity-90 transition-colors group"
+                >
+                  Peržiūrėti įrangą
+                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+                </Link>
+                <Link
+                  to="/kontaktai"
+                  className="inline-flex items-center px-6 py-3 border-2 border-[#9bc329] text-[#9bc329] rounded-lg hover:bg-[#9bc329] hover:text-white transition-colors"
+                >
+                  Susisiekti
+                </Link>
+              </div>
             </div>
             <div className="relative">
               <div className="absolute -inset-4 bg-[#9bc329]/10 rounded-2xl transform rotate-3"></div>
               <img
-                src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80"
-                alt="Grūdų saugojimas"
-                className="relative rounded-xl shadow-2xl"
+                src="https://i.imgur.com/eDmH1po.png"
+                alt="Plastiko rankovės"
+                className="relative rounded-xl shadow-2xl w-full"
               />
             </div>
           </div>
@@ -91,38 +125,25 @@ const PlasticSleeves = () => {
 
       <div className="bg-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-8 md:p-12 shadow-xl">
-            <div className="grid md:grid-cols-2 gap-12">
-              <div className="text-white">
-                <h2 className="text-3xl font-bold mb-6">Techninė informacija</h2>
-                <div className="space-y-4">
-                  <p className="text-gray-300">
-                    Specialios polietileno rankovės pasižymi atsparumu UV spinduliams, lietui ir temperatūros pokyčiams. Jos leidžia laikyti net šiek tiek drėgnesnius grūdus (2–3 % virš ribos), tačiau rekomenduojama reguliariai tikrinti jų būklę.
-                  </p>
-                  <p className="text-gray-300">
-                    Rankovės dedamos ant lygios, gerai išvalytos vietos, idealiai – Šiaurės–Pietų kryptimi, kad sumažėtų saulės poveikis.
-                  </p>
-                </div>
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-3xl font-bold mb-8">Kodėl verta rinktis plastiko rankoves?</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {features.map((feature, index) => (
+                  <div key={index} className="flex items-center space-x-3">
+                    <Check className="w-5 h-5 text-[#9bc329] flex-shrink-0" />
+                    <span className="text-gray-700">{feature}</span>
+                  </div>
+                ))}
               </div>
-              <div className="space-y-6">
-                <div className="bg-white/10 rounded-lg p-6">
-                  <h3 className="text-xl font-semibold text-white mb-4">Svarbu žinoti</h3>
-                  <ul className="space-y-3 text-gray-300">
-                    <li className="flex items-center">
-                      <div className="w-2 h-2 bg-[#9bc329] rounded-full mr-3"></div>
-                      Reguliari būklės kontrolė
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-2 h-2 bg-[#9bc329] rounded-full mr-3"></div>
-                      Greitas pažeidimų taisymas
-                    </li>
-                    <li className="flex items-center">
-                      <div className="w-2 h-2 bg-[#9bc329] rounded-full mr-3"></div>
-                      Tinka įvairioms medžiagoms
-                    </li>
-                  </ul>
-                </div>
-              </div>
+            </div>
+            <div className="relative">
+              <div className="absolute -inset-4 bg-[#9bc329]/10 rounded-2xl transform -rotate-3"></div>
+              <img
+                src="https://i.imgur.com/uVORlUM.jpeg"
+                alt="Plastiko rankovių privalumai"
+                className="relative rounded-xl shadow-2xl w-full"
+              />
             </div>
           </div>
         </div>
@@ -148,6 +169,34 @@ const PlasticSleeves = () => {
                 suffix=" t"
                 description="Lietuvos ūkininkai saugo grūdus plastiko rankovėse"
               />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* CTA Section */}
+      <div className="bg-white py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-12 text-center text-white">
+            <h2 className="text-3xl font-bold mb-6">Pradėkite taupyti jau šiandien</h2>
+            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+              Sužinokite, kaip plastiko rankovės gali padėti jūsų ūkiui. 
+              Mūsų ekspertai pasiruošę atsakyti į visus jūsų klausimus.
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link
+                to="/kontaktai"
+                className="inline-flex items-center px-8 py-4 bg-[#9bc329] text-white rounded-lg hover:bg-opacity-90 transition-colors group"
+              >
+                Gauti pasiūlymą
+                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+              </Link>
+              <Link
+                to="/technika"
+                className="inline-flex items-center px-8 py-4 bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-colors"
+              >
+                Peržiūrėti įrangą
+              </Link>
             </div>
           </div>
         </div>
