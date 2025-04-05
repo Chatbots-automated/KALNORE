@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
-import Modal from '../components/Modal';
+import { ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 
 interface ProductDetails {
@@ -25,82 +24,70 @@ const ProductSection = ({
   specs = [],
   manufacturer
 }: ProductSectionProps) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <>
-      <div 
-        className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-[1.01] cursor-pointer"
-        onClick={() => setIsModalOpen(true)}
-      >
-        <div className="aspect-w-16 aspect-h-9 relative">
-          <img
-            src={imageUrl}
-            alt={title}
-            className="w-full h-[300px] object-cover"
-            loading="lazy"
-          />
-        </div>
-        <div className="p-6">
-          <h3 className="text-xl font-bold mb-4 text-gray-900">{title}</h3>
-          <p className="text-gray-600 mb-4">{description}</p>
-          <button
-            className="inline-flex items-center text-[#9bc329] hover:text-[#8ab024] font-semibold"
-          >
-            Skaityti daugiau <ChevronDown className="ml-2" />
-          </button>
-        </div>
+    <div className="bg-white rounded-2xl overflow-hidden transition-all duration-500 ease-in-out hover:shadow-2xl">
+      <div className="aspect-w-16 aspect-h-9 relative group cursor-pointer" onClick={() => setIsExpanded(!isExpanded)}>
+        <img
+          src={imageUrl}
+          alt={title}
+          className="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
 
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-      >
-        <article itemScope itemType="https://schema.org/Product">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <img
-                src={imageUrl}
-                alt={title}
-                className="w-full rounded-lg"
-                itemProp="image"
-              />
+      <div className="p-8">
+        <div className="flex justify-between items-start mb-4">
+          <h3 className="text-2xl font-bold text-gray-900">{title}</h3>
+          <span className="px-3 py-1 bg-[#9bc329]/10 text-[#9bc329] rounded-full text-sm font-semibold">
+            {manufacturer}
+          </span>
+        </div>
+
+        <p className="text-gray-600 text-lg mb-6">{description}</p>
+
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="inline-flex items-center text-[#9bc329] hover:text-[#8ab024] font-semibold transition-colors duration-300"
+        >
+          {isExpanded ? 'Rodyti mažiau' : 'Skaityti daugiau'} 
+          {isExpanded ? <ChevronUp className="ml-2" /> : <ChevronDown className="ml-2" />}
+        </button>
+
+        <div className={`mt-6 transition-all duration-500 ease-in-out overflow-hidden ${isExpanded ? 'max-h-[2000px]' : 'max-h-0'}`}>
+          <div className="border-t border-gray-100 pt-6">
+            <div className="prose max-w-none text-gray-600">
+              {fullDescription.split('\n\n').map((paragraph, index) => (
+                <p key={index} className="mb-4">{paragraph}</p>
+              ))}
             </div>
-            <div>
-              <h2 className="text-2xl font-bold mb-4" itemProp="name">{title}</h2>
-              <meta itemProp="brand" content={manufacturer} />
-              
-              <div className="prose max-w-none" itemProp="description">
-                {fullDescription.split('\n\n').map((paragraph, index) => (
-                  <p key={index} className="text-gray-600 mb-4">{paragraph}</p>
-                ))}
+
+            {specs.length > 0 && (
+              <div className="mt-8 bg-gray-50 rounded-xl p-6">
+                <h4 className="text-xl font-semibold mb-4">Specifikacijos</h4>
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {specs.map((spec, index) => (
+                    <li key={index} className="flex items-center text-gray-700">
+                      <div className="w-2 h-2 bg-[#9bc329] rounded-full mr-3"></div>
+                      {spec}
+                    </li>
+                  ))}
+                </ul>
               </div>
+            )}
 
-              {specs.length > 0 && (
-                <div className="mt-8">
-                  <h3 className="text-xl font-semibold mb-4">Specifikacijos</h3>
-                  <ul className="space-y-2">
-                    {specs.map((spec, index) => (
-                      <li key={index} className="flex items-center text-gray-600">
-                        <span className="w-2 h-2 bg-[#9bc329] rounded-full mr-3"></span>
-                        {spec}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {origin && (
-                <div className="mt-6 flex items-center text-gray-500">
-                  <span className="font-semibold">Kilmės šalis:</span>
-                  <span className="ml-2">{origin}</span>
-                </div>
-              )}
-            </div>
+            {origin && (
+              <div className="mt-6 inline-flex items-center px-4 py-2 bg-gray-50 rounded-lg">
+                <span className="font-semibold text-gray-700">Kilmės šalis:</span>
+                <span className="ml-2 text-gray-600">{origin}</span>
+              </div>
+            )}
           </div>
-        </article>
-      </Modal>
-    </>
+        </div>
+      </div>
+    </div>
   );
 };
 
@@ -388,71 +375,84 @@ Tausokite techniką ir laiką naudodami efektyviausią valytuvą rinkoje.`,
     <>
       <Helmet>
         <title>Žemės ūkio technika | Kalnorė</title>
-        <meta name="description" content="Profesionali žemės ūkio technika: grūdų kimštuvai, perkrovimo puspriekabės, vagonų pakrovimo įranga. KOBZARENKO, AGRIPAK, RICHIGER ir kiti patikimi gamintojai." />
+        <meta name="description" content="Profesionali žemės  ūkio technika: grūdų kimštuvai, perkrovimo puspriekabės, vagonų pakrovimo įranga. KOBZARENKO, AGRIPAK, RICHIGER ir kiti patikimi gamintojai." />
         <meta name="keywords" content="žemės ūkio technika, grūdų kimštuvai, perkrovimo puspriekabės, KOBZARENKO, AGRIPAK, RICHIGER" />
         <link rel="canonical" href="https://www.kalnore.lt/technika" />
         
-        {/* Open Graph tags */}
         <meta property="og:title" content="Žemės ūkio technika | Kalnorė" />
         <meta property="og:description" content="Profesionali žemės ūkio technika: grūdų kimštuvai, perkrovimo puspriekabės, vagonų pakrovimo įranga." />
         <meta property="og:image" content="https://kalnore.lt/wp-content/uploads/2021/01/kimstuvasiskrovimas1.jpg" />
         <meta property="og:url" content="https://www.kalnore.lt/technika" />
         
-        {/* Twitter Card tags */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Žemės ūkio technika | Kalnorė" />
         <meta name="twitter:description" content="Profesionali žemės ūkio technika nuo patikimų gamintojų." />
         <meta name="twitter:image" content="https://kalnore.lt/wp-content/uploads/2021/01/kimstuvasiskrovimas1.jpg" />
       </Helmet>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <h1 className="text-4xl font-bold mb-8">Produkcija</h1>
-        
-        <p className="text-lg text-gray-600 mb-12">
-          Platus žemės ūkio technikos pasirinkimas: nuo grūdų kimštuvų iki vagonų pakrovimo įrangos. 
-          Dirbame tik su patikimais gamintojais.
-        </p>
+      <div className="bg-gray-50 min-h-screen">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Produkcija</h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Platus žemės ūkio technikos pasirinkimas: nuo grūdų kimštuvų iki vagonų pakrovimo įrangos. 
+              Dirbame tik su patikimais gamintojais.
+            </p>
+          </div>
 
-        <div className="space-y-16">
-          {/* KOBZARENKO Section */}
-          <section>
-            <h2 className="text-3xl font-bold mb-8 text-gray-900">KOBZARENKO</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {products.kobzarenko.map((product, index) => (
-                <ProductSection key={index} {...product} manufacturer="KOBZARENKO" />
-              ))}
-            </div>
-          </section>
+          <div className="space-y-24">
+            {/* KOBZARENKO Section */}
+            <section>
+              <div className="flex items-center justify-between mb-12">
+                <h2 className="text-3xl font-bold text-gray-900">KOBZARENKO</h2>
+                <div className="h-1 flex-grow mx-8 bg-gradient-to-r from-[#9bc329]/20 to-[#9bc329]"></div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {products.kobzarenko.map((product, index) => (
+                  <ProductSection key={index} {...product} manufacturer="KOBZARENKO" />
+                ))}
+              </div>
+            </section>
 
-          {/* AGRIPAK Section */}
-          <section>
-            <h2 className="text-3xl font-bold mb-8 text-gray-900">AGRIPAK</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {products.agripak.map((product, index) => (
-                <ProductSection key={index} {...product} manufacturer="AGRIPAK" />
-              ))}
-            </div>
-          </section>
+            {/* AGRIPAK Section */}
+            <section>
+              <div className="flex items-center justify-between mb-12">
+                <h2 className="text-3xl font-bold text-gray-900">AGRIPAK</h2>
+                <div className="h-1 flex-grow mx-8 bg-gradient-to-r from-[#9bc329]/20 to-[#9bc329]"></div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {products.agripak.map((product, index) => (
+                  <ProductSection key={index} {...product} manufacturer="AGRIPAK" />
+                ))}
+              </div>
+            </section>
 
-          {/* RICHIGER Section */}
-          <section>
-            <h2 className="text-3xl font-bold mb-8 text-gray-900">RICHIGER</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {products.richiger.map((product, index) => (
-                <ProductSection key={index} {...product} manufacturer="RICHIGER" />
-              ))}
-            </div>
-          </section>
+            {/* RICHIGER Section */}
+            <section>
+              <div className="flex items-center justify-between mb-12">
+                <h2 className="text-3xl font-bold text-gray-900">RICHIGER</h2>
+                <div className="h-1 flex-grow mx-8 bg-gradient-to-r from-[#9bc329]/20 to-[#9bc329]"></div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {products.richiger.map((product, index) => (
+                  <ProductSection key={index} {...product} manufacturer="RICHIGER" />
+                ))}
+              </div>
+            </section>
 
-          {/* Other Equipment Section */}
-          <section>
-            <h2 className="text-3xl font-bold mb-8 text-gray-900">Kita įranga</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {products.other.map((product, index) => (
-                <ProductSection key={index} {...product} manufacturer={product.title.split(' ')[0]} />
-              ))}
-            </div>
-          </section>
+            {/* Other Equipment Section */}
+            <section>
+              <div className="flex items-center justify-between mb-12">
+                <h2 className="text-3xl font-bold text-gray-900">Kita įranga</h2>
+                <div className="h-1 flex-grow mx-8 bg-gradient-to-r from-[#9bc329]/20 to-[#9bc329]"></div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {products.other.map((product, index) => (
+                  <ProductSection key={index} {...product} manufacturer={product.title.split(' ')[0]} />
+                ))}
+              </div>
+            </section>
+          </div>
         </div>
       </div>
     </>
