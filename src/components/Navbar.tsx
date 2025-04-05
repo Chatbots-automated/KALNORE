@@ -27,7 +27,7 @@ const Navbar = () => {
               <img 
                 src="https://i.imgur.com/mFm6Vcm.png" 
                 alt="Kalnorė" 
-                className="h-12 w-auto"
+                className="h-12 w-auto transform hover:scale-105 transition-transform duration-300"
               />
             </Link>
           </div>
@@ -45,46 +45,37 @@ const Navbar = () => {
                 <Link
                   key={path}
                   to={path}
-                  className={`relative font-medium transition-colors duration-200 ${
+                  className={`relative font-medium transition-all duration-300 group ${
                     location.pathname === path
                       ? 'text-[#9bc329]'
                       : 'text-gray-700 hover:text-[#9bc329]'
                   }`}
                 >
                   {label}
-                  {location.pathname === path && (
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#9bc329] transform origin-left"></span>
-                  )}
+                  <span className={`absolute -bottom-1 left-0 w-full h-0.5 bg-[#9bc329] transform origin-left transition-transform duration-300 ${
+                    location.pathname === path ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                  }`}></span>
                 </Link>
               ))}
             </div>
             
             {/* Social Media Icons */}
             <div className="flex items-center space-x-4">
-              <a 
-                href="https://www.facebook.com/Kalnore.lt" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-gray-600 hover:text-[#9bc329] transition-colors duration-200"
-              >
-                <Facebook size={20} />
-              </a>
-              <a 
-                href="https://www.instagram.com/kalnore.lt/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-gray-600 hover:text-[#9bc329] transition-colors duration-200"
-              >
-                <Instagram size={20} />
-              </a>
-              <a 
-                href="https://www.linkedin.com/company/kalnor%C4%97/about/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-gray-600 hover:text-[#9bc329] transition-colors duration-200"
-              >
-                <Linkedin size={20} />
-              </a>
+              {[
+                { icon: Facebook, href: 'https://www.facebook.com/Kalnore.lt' },
+                { icon: Instagram, href: 'https://www.instagram.com/kalnore.lt/' },
+                { icon: Linkedin, href: 'https://www.linkedin.com/company/kalnor%C4%97/about/' }
+              ].map(({ icon: Icon, href }, index) => (
+                <a 
+                  key={index}
+                  href={href}
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-gray-600 hover:text-[#9bc329] transition-all duration-300 transform hover:scale-110"
+                >
+                  <Icon size={20} />
+                </a>
+              ))}
             </div>
           </div>
 
@@ -92,7 +83,7 @@ const Navbar = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-[#9bc329] transition-colors duration-200"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-[#9bc329] transition-all duration-300 hover:scale-110"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -101,7 +92,7 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`md:hidden transition-all duration-300 ease-in-out ${
+      <div className={`md:hidden transition-all duration-500 ease-in-out ${
         isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
       } overflow-hidden bg-white/95 backdrop-blur-sm`}>
         <div className="px-4 pt-2 pb-3 space-y-1">
@@ -115,7 +106,7 @@ const Navbar = () => {
             <Link
               key={path}
               to={path}
-              className={`block px-3 py-2 rounded-lg text-base font-medium transition-all duration-200 ${
+              className={`block px-3 py-2 rounded-lg text-base font-medium transition-all duration-300 ${
                 location.pathname === path
                   ? 'text-[#9bc329] bg-[#9bc329]/10'
                   : 'text-gray-700 hover:text-[#9bc329] hover:bg-gray-50'
@@ -128,30 +119,21 @@ const Navbar = () => {
           
           {/* Mobile Social Media Icons */}
           <div className="flex items-center space-x-4 px-3 py-2">
-            <a 
-              href="https://www.facebook.com/Kalnore.lt" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-gray-600 hover:text-[#9bc329] transition-colors duration-200"
-            >
-              <Facebook size={20} />
-            </a>
-            <a 
-              href="https://www.instagram.com/kalnore.lt/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-gray-600 hover:text-[#9bc329] transition-colors duration-200"
-            >
-              <Instagram size={20} />
-            </a>
-            <a 
-              href="https://www.linkedin.com/company/kalnor%C4%97/about/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="text-gray-600 hover:text-[#9bc329] transition-colors duration-200"
-            >
-              <Linkedin size={20} />
-            </a>
+            {[
+              { icon: Facebook, href: 'https://www.facebook.com/Kalnore.lt' },
+              { icon: Instagram, href: 'https://www.instagram.com/kalnore.lt/' },
+              { icon: Linkedin, href: 'https://www.linkedin.com/company/kalnor%C4%97/about/' }
+            ].map(({ icon: Icon, href }, index) => (
+              <a 
+                key={index}
+                href={href}
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-gray-600 hover:text-[#9bc329] transition-all duration-300 transform hover:scale-110"
+              >
+                <Icon size={20} />
+              </a>
+            ))}
           </div>
         </div>
       </div>

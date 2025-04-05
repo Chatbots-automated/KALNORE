@@ -8,41 +8,32 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="py-12 grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="space-y-6">
-            <Link to="/" className="block">
+            <Link to="/" className="block group">
               <img 
                 src="https://i.imgur.com/mFm6Vcm.png"
                 alt="Kalnorė" 
-                className="h-12 w-auto"
+                className="h-12 w-auto transform group-hover:scale-105 transition-transform duration-300"
               />
             </Link>
             <p className="text-gray-400 leading-relaxed">
               Žemės ūkio technikos ekspertai nuo 2006 metų. Patikimi sprendimai jūsų verslui.
             </p>
             <div className="flex space-x-4">
-              <a 
-                href="https://www.facebook.com/Kalnore.lt" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-gray-400 hover:text-[#9bc329] transition-colors duration-200"
-              >
-                <Facebook size={24} />
-              </a>
-              <a 
-                href="https://www.instagram.com/kalnore.lt/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-gray-400 hover:text-[#9bc329] transition-colors duration-200"
-              >
-                <Instagram size={24} />
-              </a>
-              <a 
-                href="https://www.linkedin.com/company/kalnor%C4%97/about/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="text-gray-400 hover:text-[#9bc329] transition-colors duration-200"
-              >
-                <Linkedin size={24} />
-              </a>
+              {[
+                { icon: Facebook, href: 'https://www.facebook.com/Kalnore.lt' },
+                { icon: Instagram, href: 'https://www.instagram.com/kalnore.lt/' },
+                { icon: Linkedin, href: 'https://www.linkedin.com/company/kalnor%C4%97/about/' }
+              ].map(({ icon: Icon, href }, index) => (
+                <a 
+                  key={index}
+                  href={href} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="text-gray-400 hover:text-[#9bc329] transition-all duration-300 transform hover:scale-110"
+                >
+                  <Icon size={24} />
+                </a>
+              ))}
             </div>
           </div>
           
@@ -59,9 +50,9 @@ const Footer = () => {
                 <li key={path}>
                   <Link 
                     to={path} 
-                    className="text-gray-400 hover:text-[#9bc329] transition-colors duration-200 flex items-center"
+                    className="text-gray-400 hover:text-[#9bc329] transition-all duration-300 flex items-center group"
                   >
-                    <span className="w-1.5 h-1.5 bg-[#9bc329] rounded-full mr-2"></span>
+                    <span className="w-1.5 h-1.5 bg-[#9bc329] rounded-full mr-2 transform group-hover:scale-125 transition-transform"></span>
                     {label}
                   </Link>
                 </li>
@@ -72,42 +63,47 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-6">Kontaktai</h4>
             <ul className="space-y-4">
-              <li className="flex items-start">
-                <MapPin className="w-5 h-5 text-[#9bc329] mr-3 mt-1 flex-shrink-0" />
-                <span className="text-gray-400">Sodų g.11, LT-71136, Šakiai</span>
-              </li>
-              <li className="flex items-center">
-                <Phone className="w-5 h-5 text-[#9bc329] mr-3 flex-shrink-0" />
-                <a href="tel:+37061785600" className="text-gray-400 hover:text-[#9bc329] transition-colors duration-200">
-                  +370 617 85600
-                </a>
-              </li>
-              <li className="flex items-center">
-                <Mail className="w-5 h-5 text-[#9bc329] mr-3 flex-shrink-0" />
-                <a href="mailto:pardavimai@kalnore.lt" className="text-gray-400 hover:text-[#9bc329] transition-colors duration-200">
-                  pardavimai@kalnore.lt
-                </a>
-              </li>
-              <li className="flex items-center">
-                <Clock className="w-5 h-5 text-[#9bc329] mr-3 flex-shrink-0" />
-                <span className="text-gray-400">Pirm–Penkt: 08:00 – 17:00</span>
-              </li>
+              {[
+                { icon: MapPin, content: 'Sodų g.11, LT-71136, Šakiai', href: 'https://goo.gl/maps/YOUR_MAP_LINK' },
+                { icon: Phone, content: '+370 617 85600', href: 'tel:+37061785600' },
+                { icon: Mail, content: 'pardavimai@kalnore.lt', href: 'mailto:pardavimai@kalnore.lt' },
+                { icon: Clock, content: 'Pirm–Penkt: 08:00 – 17:00' }
+              ].map(({ icon: Icon, content, href }, index) => (
+                <li key={index} className="flex items-start group">
+                  <Icon className="w-5 h-5 text-[#9bc329] mr-3 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform" />
+                  {href ? (
+                    <a href={href} className="text-gray-400 hover:text-[#9bc329] transition-colors duration-300">
+                      {content}
+                    </a>
+                  ) : (
+                    <span className="text-gray-400">{content}</span>
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
           
           <div>
             <h4 className="text-lg font-semibold mb-6">Rekvizitai</h4>
             <ul className="space-y-2 text-gray-400">
-              <li>Įmonės kodas: 303228460</li>
-              <li>PVM kodas: LT100008307911</li>
-              <li className="pt-4">Bankas: „Swedbank" AB</li>
-              <li>A/S LT87 7300 0101 4992 5182</li>
+              <li className="transition-colors duration-300 hover:text-[#9bc329]">
+                Įmonės kodas: <span className="font-medium">303228460</span>
+              </li>
+              <li className="transition-colors duration-300 hover:text-[#9bc329]">
+                PVM kodas: <span className="font-medium">LT100008307911</span>
+              </li>
+              <li className="pt-4 transition-colors duration-300 hover:text-[#9bc329]">
+                Bankas: <span className="font-medium">„Swedbank" AB</span>
+              </li>
+              <li className="transition-colors duration-300 hover:text-[#9bc329]">
+                A/S <span className="font-medium">LT87 7300 0101 4992 5182</span>
+              </li>
             </ul>
           </div>
         </div>
         
         <div className="border-t border-gray-800 py-8 text-center">
-          <p className="text-gray-400">© {new Date().getFullYear()} UAB Kalnorė. Visos teisės saugomos.</p>
+          <p className="text-gray-400">&copy; {new Date().getFullYear()} UAB Kalnorė. Visos teisės saugomos.</p>
         </div>
       </div>
     </footer>
