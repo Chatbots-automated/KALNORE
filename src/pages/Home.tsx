@@ -1,8 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
+import StatCounter from '../components/StatCounter';
 
 const Home = () => {
+  const partners = [
+    { url: 'https://i.imgur.com/gSM9MQn.png', alt: 'Partner 1' },
+    { url: 'https://i.imgur.com/QLQJv5W.png', alt: 'Partner 2' },
+    { url: 'https://i.imgur.com/dfLfSb1.png', alt: 'Partner 3' },
+    { url: 'https://i.imgur.com/muu8umL.png', alt: 'Partner 4' },
+    { url: 'https://i.imgur.com/Wz6j34j.png', alt: 'Partner 5' },
+    { url: 'https://i.imgur.com/UuRT2SI.png', alt: 'Partner 6' },
+    { url: 'https://i.imgur.com/kUKu2sD.png', alt: 'Partner 7' },
+  ];
+
   return (
     <div>
       {/* Hero Section */}
@@ -37,8 +48,30 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Intro Section */}
+      {/* Statistics Section */}
       <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-12">
+            <div className="bg-gray-50 rounded-lg p-8 shadow-lg transform hover:scale-105 transition-transform duration-300">
+              <StatCounter
+                end={95000000}
+                suffix=" t"
+                description="Argentinoje užaugintų grūdų yra saugojama plastiko rankovėse"
+              />
+            </div>
+            <div className="bg-gray-50 rounded-lg p-8 shadow-lg transform hover:scale-105 transition-transform duration-300">
+              <StatCounter
+                end={282000}
+                suffix=" t"
+                description="2020 metais mūsų klientai Lietuvoje plastiko rankovėse saugo įvairių grūdinių kultūrų"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Intro Section */}
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -58,60 +91,23 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Product Grid */}
-      <section className="py-16 bg-gray-50">
+      {/* Partners Section */}
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <img
-                src="https://kalnore.lt/wp-content/uploads/2021/01/15-300x300.jpg"
-                alt="Plastiko rankovės"
-                className="w-full h-64 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-4">Plastiko rankovės</h3>
-                <Link
-                  to="/plastiko-rankoves"
-                  className="inline-flex items-center text-[#9bc329] hover:underline"
-                >
-                  Plačiau <ArrowRight className="ml-1" size={16} />
-                </Link>
+          <h2 className="text-3xl font-bold text-center mb-12">MŪSŲ PARTNERIAI</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+            {partners.map((partner, index) => (
+              <div 
+                key={index} 
+                className="flex items-center justify-center p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
+              >
+                <img
+                  src={partner.url}
+                  alt={partner.alt}
+                  className="max-h-20 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                />
               </div>
-            </div>
-
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <img
-                src="https://kalnore.lt/wp-content/uploads/2021/01/1596445329_zpm-180_kobzarenko-2020-2-1-300x300.png"
-                alt="KOBZARENKO technika"
-                className="w-full h-64 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-4">KOBZARENKO technika</h3>
-                <Link
-                  to="/technika"
-                  className="inline-flex items-center text-[#9bc329] hover:underline"
-                >
-                  Plačiau <ArrowRight className="ml-1" size={16} />
-                </Link>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-              <img
-                src="https://kalnore.lt/wp-content/uploads/2021/01/BNP-12_Kovcheg-1-1-1-300x300.png"
-                alt="Vagonų pakrovimo įranga"
-                className="w-full h-64 object-cover"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-bold mb-4">Vagonų pakrovimo įranga</h3>
-                <Link
-                  to="/technika"
-                  className="inline-flex items-center text-[#9bc329] hover:underline"
-                >
-                  Plačiau <ArrowRight className="ml-1" size={16} />
-                </Link>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>

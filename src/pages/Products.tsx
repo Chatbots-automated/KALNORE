@@ -110,7 +110,7 @@ const Products = () => {
       {
         title: "Grūdų kimštuvai ir iškrovimo mašinos",
         description: "ZAVOD KOBZARENKO grūdų kimštuvai (ZPM) ir iškrovimo mašinos (ZRM) yra patikimi įrenginiai, skirti didelės apimties grūdų laikymui.",
-        imageUrl: "https://kalnore.lt/wp-content/uploads/2021/01/kimstuvasiskrovimas1.jpg",
+        imageUrl: "https://i.imgur.com/NVAhII9.png",
         fullDescription: `ZAVOD KOBZARENKO grūdų kimštuvai (ZPM) ir iškrovimo mašinos (ZRM) yra patikimi įrenginiai, skirti didelės apimties grūdų laikymui naudojant plastiko rankovių technologiją. Šis metodas leidžia ūkininkams išvengti brangių sandėliavimo patalpų statybos ir greitai bei ekonomiškai reaguoti į derliaus piko metu atsirandantį saugojimo poreikį.
 
 ZPM-180 modelis automatiškai užpildo 9 pėdų skersmens rankoves grūdais, padėdamas juos tiesiai ant paruošto paviršiaus. Modelis ZPM-180P turi papildomus maišymo velenus, leidžiančius apdoroti ne tik grūdus, bet ir išspaudas. Abu modeliai pasižymi dideliu našumu (iki 180 t/h) ir gali būti eksploatuojami su 80 AG traktoriais.
@@ -129,7 +129,7 @@ Tinka ūkiams, kurie ieško lankstaus sprendimo grūdų saugojimui be didelių i
       {
         title: "Perkrovimo puspriekabės",
         description: "PBN serijos puspriekabės maksimaliai pagreitina grūdų transportavimo procesus derliaus nuėmimo metu.",
-        imageUrl: "https://kalnore.lt/wp-content/uploads/2021/01/101692302_2928764860570500_1291603120966598656_o-Copy.jpg",
+        imageUrl: "https://i.imgur.com/CRdkCKU.png",
         fullDescription: `Perkrovimo puspriekabės PBN serijos yra sukurtos tam, kad maksimaliai pagreitintų grūdų transportavimo procesus derliaus nuėmimo metu. Jos dirba kartu su kombainais laukuose ir užtikrina sklandų perkrovimą į laikinas saugojimo sistemas arba kimštuvus.
 
 Šios puspriekabės pasižymi įspūdinga talpa (iki 40 m³) ir gali iškrauti grūdus sraigtiniu transportavimo būdu iki 12 tonų per minutę, priklausomai nuo traktoriaus PTO apsukų. Modeliai pritaikyti skirtingiems ūkių dydžiams, su 1–3 ašių pasirinkimu bei tvirta važiuokle.
@@ -146,9 +146,30 @@ Tai nepakeičiama priemonė efektyviam logistikos valdymui grūdų derliaus metu
         ]
       },
       {
+        title: "Vagonų iškrovimo įranga",
+        description: "KOBZARENKO RVM – Vagonų iškrovimo įranga skirta greitam grūdų ir birių medžiagų iškrovimui iš traukinių vagonų.",
+        imageUrl: "https://i.imgur.com/bzQB9cd.png",
+        fullDescription: `Mobili RVM įranga skirta greitam grūdų ir birių medžiagų iškrovimui iš traukinių vagonų į puspriekabes ar kitas talpas. Naudoja horizontalius ir vertikalius sraigtus, kurie nepažeidžia grūdų.
+
+RVM serijos įranga pasižymi aukštu našumu ir patikimumu. Galima rinktis tarp PTO ar elektrinės pavaros, kas suteikia lankstumą skirtingose darbo aplinkose.
+
+Įranga sukurta taip, kad būtų lengvai transportuojama ir greitai paruošiama darbui. Tai puikus sprendimas grūdų elevatorių ir logistikos centrų operatoriams.`,
+        origin: "Ukraina",
+        specs: [
+          "Modeliai: RVM-180 / RVM-180 E",
+          "Pavara: PTO arba elektrinė",
+          "Našumas: 180 t/h",
+          "Sraigės diametras: 400 mm",
+          "Aukštis: 4,60 – 5,30 m",
+          "Išmatavimai (Ilgis / Plotis): 3000 mm / 2100 mm",
+          "Padangos: 10/75 – 15.3",
+          "Traktoriaus galia: 80 AG"
+        ]
+      },
+      {
         title: "Vagonų pakrovimo įranga",
         description: "BNP įranga skirta grūdų ir birių medžiagų pakrovimui į traukinių vagonus. Sraigtinė sistema leidžia efektyviai valdyti krovos procesą.",
-        imageUrl: "https://kalnore.lt/wp-content/uploads/2021/01/BNP-12_Kovcheg-1-1.jpg",
+        imageUrl: "https://i.imgur.com/zJTPByW.png",
         fullDescription: `BNP serijos įranga leidžia efektyviai pakrauti grūdus į geležinkelio vagonus ar kitus tūrius turinčius konteinerius. Įrenginys suprojektuotas remiantis sraigtine technologija, kuri leidžia saugiai perkelti net ir jautrias medžiagas nesukeliant jų deformacijos ar suspaudimo.
 
 Horizontali sraigtų sistema tiekia grūdus į vertikalią liniją, kuri juos perkelia į talpą. Ši konstrukcija garantuoja vienodą ir stabilų užpildymą, o galimybė naudoti elektrinę ar PTO pavara užtikrina universalų pritaikomumą įvairioms darbo sąlygoms.
@@ -167,7 +188,7 @@ Puikus pasirinkimas ten, kur svarbu greitis, tikslumas ir kokybės kontrolė gr�
       {
         title: "Krovinius išstumiančios puspriekabės",
         description: "ATLANT TZP puspriekabės turi horizontalaus išstūmimo sistemą, kuri leidžia lengvai iškrauti grūdus ar mėšlą.",
-        imageUrl: "https://kalnore.lt/wp-content/uploads/2021/01/istumiancios1.jpg",
+        imageUrl: "https://i.imgur.com/eiNlivH.png",
         fullDescription: `ATLANT TZP serijos puspriekabės – tai kompleksinis transportavimo sprendimas, skirtas skirtingiems biriems kroviniams. Šių puspriekabių išskirtinumas – horizontalioji išstūmimo sistema, leidžianti iškrauti krovinius greitai, tiksliai ir be išvertimo mechanizmo.
 
 Sistemos veikimas: pirmasis hidraulinis cilindras atidaro galinį bortą, antrasis stumia priekinę sienelę kartu su dalimi dugno, o trečiasis užbaigia procesą stumdamas sienelę iki galo. Toks iškrovimo būdas puikiai tinka darbui su grūdais, mėšlu, sraigtais ir kitais komponentais.
@@ -186,7 +207,7 @@ Skirta tiems, kurie nori maksimalaus efektyvumo be kompromisų dėl darbo sąlyg
       {
         title: "Savikrovės ritinių puspriekabės",
         description: "PT modeliai automatizuotai pakrauna, perveža ir iškrauna ritinius. Tinka ūkiams su dideliais plotais.",
-        imageUrl: "https://kalnore.lt/wp-content/uploads/2021/01/savikroves1.jpg",
+        imageUrl: "https://i.imgur.com/addTheS.png",
         fullDescription: `PT serijos ritinių puspriekabės išsprendžia problemą, su kuria susiduria didesni gyvulininkystės ar pašarų ūkiai – kaip greitai, saugiai ir efektyviai surinkti bei perkelti didelius kiekius ritinių.
 
 Pakrovimo procesas yra visiškai automatizuotas: ritinys įkeliamas specialiu kėlimo mechanizmu, perstumiamas link puspriekabės galo, o iškrovimas vyksta per atveriamą galinę dalį. Priekinė siena yra stumdoma, todėl ritiniai išstumti be papildomos įrangos ar žmogaus pastangų.
@@ -207,7 +228,7 @@ Optimalus pasirinkimas tiems, kas nori sumažinti darbo sąnaudas ir dirbti su m
       {
         title: "Grūdų kimštuvai (R9 / RW9)",
         description: "R9 ir RW9 modeliai sukurti grūdų saugojimui plastiko rankovėse. Tinka ir išspaudoms.",
-        imageUrl: "https://kalnore.lt/wp-content/uploads/2022/11/D__8386.jpg",
+        imageUrl: "https://i.imgur.com/qjtCSF0.png",
         fullDescription: `AGRIPAK grūdų kimštuvai R9 ir RW9 modeliai skirti grūdų saugojimui plastiko rankovėse tiesiai lauko sąlygomis. Tai moderni, ekonomiška technologija, leidžianti išvengti tradicinių grūdų sandėlių poreikio. Įranga puikiai tinka ūkininkams, kuriems svarbu greitai reaguoti į kintančius saugojimo poreikius ir sumažinti sąnaudas.
 
 Modelis R9 užpildo 9 pėdų diametro rankoves grūdais. RW9 modelis papildomai siūlo skirtingų dydžių tunelius, leidžiančius lanksčiau prisitaikyti prie skirtingų ūkių poreikių. Abi mašinos pasižymi dideliu našumu (iki 300 t/h), yra lengvai transportuojamos ir veikia su 60–80 AG traktoriais.
@@ -224,7 +245,7 @@ Modelis R9 užpildo 9 pėdų diametro rankoves grūdais. RW9 modelis papildomai 
       {
         title: "Grūdų iškrovimo mašinos (RP 9)",
         description: "RP 9 iškrauna grūdus ir kukurūzus iš plastiko rankovių. Pasižymi unikaliu adapteriu šlapiam kukurūzui.",
-        imageUrl: "https://kalnore.lt/wp-content/uploads/2022/11/D__0886.jpg",
+        imageUrl: "https://i.imgur.com/vSxiooe.png",
         fullDescription: `RP 9 – tai išskirtinė grūdų iškrovimo mašina, sukurta tiek grūdams, tiek kukurūzams, įskaitant šlapius. Viena iš retų mašinų rinkoje, kuri turi specialų adapterį būtent šlapio kukurūzo iškrovimui, kas padidina jos funkcionalumą ir panaudojimo spektrą.
 
 Mašina dirba su 6, 9 ir 10 pėdų plastiko rankovėmis, todėl idealiai tinka įvairiems ūkiams. Reikalingas tik 130 AG traktorius, o našumas siekia iki 150 t/h, priklausomai nuo grūdų tipo ir drėgmės.
@@ -241,7 +262,7 @@ Ideali tiems, kuriems svarbu universalumas, patikimumas ir tikslumas grūdų val
       {
         title: "Mobilūs grūdų traiškytuvai / malūnai",
         description: "G serija skirta traiškytų grūdų gamybai ir laikymui rankovėse. RSA modelis leidžia grūdus malti ir kimšti.",
-        imageUrl: "https://kalnore.lt/wp-content/uploads/2022/11/D__8418.jpg",
+        imageUrl: "https://i.imgur.com/Jiwrda6.png",
         fullDescription: `AGRIPAK G serijos traiškytuvai yra skirti grūdainio, traiškytų kukurūzų ar grūdų gamybai. Jie turi rinkoje didžiausio diametro traiškymo volus, kas užtikrina ne tik didesnį našumą, bet ir geresnę apdorojimo kokybę. Tai reiškia mažesnį energijos suvartojimą ir didesnį darbo efektyvumą.
 
 RSA modelis veikia kaip mobilus grūdų malūnas ir kimštuvas viename – jis smulkina grūdus į skirtingas frakcijas ir kimša tiesiai į plastiko rankoves. Galima naudoti su konservantais, todėl puikiai tinka gyvulių ūkiams, kuriuose reikalingas kombinuotas pašarų paruošimas.
@@ -258,7 +279,7 @@ Tai ne tik įrenginys, o visa grūdų apdorojimo stotis ant ratų.`,
       {
         title: "Mobilūs pašarų maišytuvai (MM-5000)",
         description: "MM-5000 ruošia kombinuotą pašarą iš vietinių žaliavų. Turi 5 t bunkerio talpą ir tikslų svėrimą.",
-        imageUrl: "https://kalnore.lt/wp-content/uploads/2022/11/MK30323-w-3-scaled.jpg",
+        imageUrl: "https://i.imgur.com/bQamb4p.png",
         fullDescription: `MM-5000 pašarų maišytuvas yra viskas viename – sumala, pasveria, sumaišo ir paruošia optimalų kombinuotą pašarą. Dėl integruotos elektroninės svėrimo sistemos galima tiksliai dozuoti kiekvieną komponentą, o 5 tonų maišymo talpa leidžia greitai aprūpinti kelis ūkius per dieną.
 
 Dėl uždaros sistemos darbas yra švarus – minimalus dulkių kiekis, mažesnė tarša, mažesnis darbo jėgos poreikis. Pašaras gali būti pilamas tiesiai gyvūnams ar saugojimui.
@@ -277,7 +298,7 @@ Puikus pasirinkimas profesionaliems ūkininkams, kurie vertina tikslumą, higien
       {
         title: "Grūdų kimštuvai (R990 / R1090)",
         description: "R990 ir R1090 modeliai užtikrina greitą ir patikimą kimšimą į plastiko rankoves. Našumas iki 900 t/h.",
-        imageUrl: "https://kalnore.lt/wp-content/uploads/2021/01/grudukimsutvas1.jpg",
+        imageUrl: "https://i.imgur.com/pr6bgQ4.png",
         fullDescription: `RICHIGER grūdų kimštuvai, gaminami Argentinoje, išsiskiria našumu – iki 900 t/h – ir itin kompaktišku kimšimu. Šie modeliai leidžia saugoti didelius kiekius grūdų tiesiai laukuose naudojant plastiko rankoves, išvengiant brangių saugojimo patalpų statybų.
 
 Naudojami kartu su grūdų perkrovimo priekabomis, kimštuvai veikia sklandžiai ir be trikdžių. Paprasta konstrukcija, patikima pavara ir minimali priežiūra leidžia ilgą laiką išlaikyti aukštą našumą.
@@ -294,7 +315,7 @@ RICHIGER – kai reikia greitai ir efektyviai susitvarkyti su didelėmis grūdų
       {
         title: "Grūdų iškrovimo mašinos (E-6910)",
         description: "E-6910 modelis leidžia iškrauti iki 350 t/h. Tinka įvairaus diametro rankovėms.",
-        imageUrl: "https://kalnore.lt/wp-content/uploads/2021/01/iskrovimomasina1.png",
+        imageUrl: "https://i.imgur.com/nTMyWp6.png",
         fullDescription: `Modelis E-6910 skirtas našiam grūdų išėmimui iš 6–10 pėdų plastiko rankovių. Mechaninė grandininė pavara užtikrina patikimą veikimą, o darbinis aukštis – beveik 5 metrai – leidžia iškrauti tiesiai į transporto priemones.
 
 Ši mašina – vienas iš patikimiausių sprendimų ūkiams, kurie naudoja plastiko rankoves kaip pagrindinę saugojimo formą ir nori išsaugoti grūdų kokybę bei švarą iškrovimo metu.
@@ -311,7 +332,7 @@ Puikus pasirinkimas didesniems grūdų kiekiams valdyti nebrangiai ir efektyviai
       {
         title: "Grūdų traiškytuvai (R950M / R6 Plus)",
         description: "R950M, R950MX ir R6 Plus traiško tiek sausus, tiek drėgnus grūdus. Veikia su 6–9 pėdų rankovėmis.",
-        imageUrl: "https://kalnore.lt/wp-content/uploads/2021/01/grudutraiskytuvai1.jpg",
+        imageUrl: "https://i.imgur.com/VnTi38N.png",
         fullDescription: `RICHIGER traiškytuvai skirti ne tik grūdainio gamybai, bet ir skaldytų, sausų bei drėgnų grūdų laikymui plastiko rankovėse. Su galimybe dirbti net 250 t/h, šie įrenginiai leidžia labai greitai paruošti pašarus ar grūdus saugojimui.
 
 Jie tinka įvairioms sąlygoms, veikia su 6 arba 9 pėdų rankovėmis, reikalauja mažai galios ir tinka tiek lauko, tiek stacionariam naudojimui.
@@ -330,7 +351,7 @@ Geriausia alternatyva didelėms ir brangioms stacionarioms traiškymo sistemoms.
       {
         title: "Vogelscheuche Aitvarai",
         description: "Delta aitvarai imituoja plėšrūnų skrydį ir efektyviai baido paukščius. Patikrinti sprendimai sodams ir laukams.",
-        imageUrl: "https://kalnore.lt/wp-content/uploads/2021/01/5c189adeb6ad2119382929.jpg",
+        imageUrl: "https://i.imgur.com/LRLmKZM.png",
         fullDescription: `Šie specialūs aitvarai yra sukurti paukščių baidymui – imituoja plėšrų paukštį, sklendžiantį danguje. Toks vaizdas sukelia natūralų baimės refleksą kenkėjams, todėl jie vengia saugomos teritorijos.
 
 Pagaminti iš Spinnaker audinio, su teleskopiniais aliuminio stulpais ir stiklo pluošto rėmu, aitvarai yra atsparūs vėjui ir orui. Veikia net esant silpnam 0.9 m/s vėjui. Patvirtinta praktikoje ir moksliškai.
@@ -346,7 +367,7 @@ Ekologiška, tylu, veiksminga – tobulas sprendimas nuo balandžių, varnų ir 
       {
         title: "KEHRFIX valytuvai / šepečiai",
         description: "Cinkuota, be aptarnavimo sistema grūdų, sniego ir siloso valymui. Montuojama ant krautuvų, traktorių.",
-        imageUrl: "https://kalnore.lt/wp-content/uploads/2021/01/5bf7f4213c17a079666126.jpg",
+        imageUrl: "https://i.imgur.com/0yXVl5N.png",
         fullDescription: `KEHRFIX – tai paprasta, tačiau išskirtinai efektyvi valymo sistema, skirta traktoriams, krautuvams ar kitai technikai. Nereikalauja elektros, hidraulikos ar judančių dalių – todėl beveik nereikalauja priežiūros ir tarnauja dešimtmečius.
 
 Idealiai tinka grūdų valymui elevatoriuose, siloso tranšėjų valymui, pašarų stūmimui, sporto aikštynams ar net sniego šalinimui. Keičiamos šepetėlių juostos, minimali priežiūra ir pilnai cinkuota konstrukcija – tai ekonomiškas ir patikimas sprendimas kasdieniams valymo darbams.
@@ -381,7 +402,6 @@ Tausokite techniką ir laiką naudodami efektyviausią valytuvą rinkoje.`,
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Žemės ūkio technika | Kalnorė" />
         <meta name="twitter:description" content="Profesionali žemės ūkio technika nuo patikimų gamintojų." />
-        
         <meta name="twitter:image" content="https://kalnore.lt/wp-content/uploads/2021/01/kimstuvasiskrovimas1.jpg" />
       </Helmet>
 
