@@ -10,9 +10,9 @@ const Footer = () => {
           <div className="space-y-6">
             <Link to="/" className="block">
               <img 
-                src="/src/assets/logo.svg"
+                src="https://i.imgur.com/mFm6Vcm.png"
                 alt="Kalnorė" 
-                className="h-12 w-auto brightness-0 invert"
+                className="h-12 w-auto"
               />
             </Link>
             <p className="text-gray-400 leading-relaxed">

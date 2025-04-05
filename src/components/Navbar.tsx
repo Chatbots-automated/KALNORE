@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Facebook, Instagram, Linkedin } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,7 +25,7 @@ const Navbar = () => {
           <div className="flex">
             <Link to="/" className="flex-shrink-0 flex items-center">
               <img 
-                src="https://kalnore.lt/wp-content/uploads/2021/01/logo-UAB-Kalnore.png" 
+                src="https://i.imgur.com/mFm6Vcm.png" 
                 alt="Kalnorė" 
                 className="h-12 w-auto"
               />
@@ -33,29 +33,59 @@ const Navbar = () => {
           </div>
           
           {/* Desktop Menu */}
-          <div className="hidden md:flex md:items-center md:space-x-8">
-            {[
-              { path: '/', label: 'Pagrindinis' },
-              { path: '/technika', label: 'Technika' },
-              { path: '/plastiko-rankoves', label: 'Plastiko Rankovės' },
-              { path: '/apie-mus', label: 'Apie Mus' },
-              { path: '/kontaktai', label: 'Kontaktai' }
-            ].map(({ path, label }) => (
-              <Link
-                key={path}
-                to={path}
-                className={`relative font-medium transition-colors duration-200 ${
-                  location.pathname === path
-                    ? 'text-[#9bc329]'
-                    : 'text-gray-700 hover:text-[#9bc329]'
-                }`}
+          <div className="hidden md:flex md:items-center">
+            <div className="flex items-center space-x-8 mr-8">
+              {[
+                { path: '/', label: 'Pagrindinis' },
+                { path: '/technika', label: 'Technika' },
+                { path: '/plastiko-rankoves', label: 'Plastiko Rankovės' },
+                { path: '/apie-mus', label: 'Apie Mus' },
+                { path: '/kontaktai', label: 'Kontaktai' }
+              ].map(({ path, label }) => (
+                <Link
+                  key={path}
+                  to={path}
+                  className={`relative font-medium transition-colors duration-200 ${
+                    location.pathname === path
+                      ? 'text-[#9bc329]'
+                      : 'text-gray-700 hover:text-[#9bc329]'
+                  }`}
+                >
+                  {label}
+                  {location.pathname === path && (
+                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#9bc329] transform origin-left"></span>
+                  )}
+                </Link>
+              ))}
+            </div>
+            
+            {/* Social Media Icons */}
+            <div className="flex items-center space-x-4">
+              <a 
+                href="https://www.facebook.com/Kalnore.lt" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-gray-600 hover:text-[#9bc329] transition-colors duration-200"
               >
-                {label}
-                {location.pathname === path && (
-                  <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#9bc329] transform origin-left"></span>
-                )}
-              </Link>
-            ))}
+                <Facebook size={20} />
+              </a>
+              <a 
+                href="https://www.instagram.com/kalnore.lt/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-gray-600 hover:text-[#9bc329] transition-colors duration-200"
+              >
+                <Instagram size={20} />
+              </a>
+              <a 
+                href="https://www.linkedin.com/company/kalnor%C4%97/about/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-gray-600 hover:text-[#9bc329] transition-colors duration-200"
+              >
+                <Linkedin size={20} />
+              </a>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
@@ -95,6 +125,34 @@ const Navbar = () => {
               {label}
             </Link>
           ))}
+          
+          {/* Mobile Social Media Icons */}
+          <div className="flex items-center space-x-4 px-3 py-2">
+            <a 
+              href="https://www.facebook.com/Kalnore.lt" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-gray-600 hover:text-[#9bc329] transition-colors duration-200"
+            >
+              <Facebook size={20} />
+            </a>
+            <a 
+              href="https://www.instagram.com/kalnore.lt/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-gray-600 hover:text-[#9bc329] transition-colors duration-200"
+            >
+              <Instagram size={20} />
+            </a>
+            <a 
+              href="https://www.linkedin.com/company/kalnor%C4%97/about/" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="text-gray-600 hover:text-[#9bc329] transition-colors duration-200"
+            >
+              <Linkedin size={20} />
+            </a>
+          </div>
         </div>
       </div>
     </nav>
