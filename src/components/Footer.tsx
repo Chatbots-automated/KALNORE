@@ -1,50 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Facebook, Instagram, Linkedin } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail, Clock } from 'lucide-react';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div>
-            <img 
-              src="https://kalnore.lt/wp-content/uploads/2021/01/logo-UAB-Kalnore.png" 
-              alt="Kalnorė" 
-              className="h-12 w-auto mb-4"
-            />
-            <p className="text-gray-400">
-              Žemės ūkio technikos ekspertai nuo 2006 metų
+    <footer className="bg-gradient-to-b from-gray-900 to-gray-800 text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="py-12 grid grid-cols-1 md:grid-cols-4 gap-12">
+          <div className="space-y-6">
+            <Link to="/" className="block">
+              <img 
+                src="/src/assets/logo.svg"
+                alt="Kalnorė" 
+                className="h-12 w-auto brightness-0 invert"
+              />
+            </Link>
+            <p className="text-gray-400 leading-relaxed">
+              Žemės ūkio technikos ekspertai nuo 2006 metų. Patikimi sprendimai jūsų verslui.
             </p>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Nuorodos</h4>
-            <ul className="space-y-2">
-              <li><Link to="/" className="text-gray-400 hover:text-[#9bc329]">Pagrindinis</Link></li>
-              <li><Link to="/technika" className="text-gray-400 hover:text-[#9bc329]">Technika</Link></li>
-              <li><Link to="/apie-mus" className="text-gray-400 hover:text-[#9bc329]">Apie mus</Link></li>
-              <li><Link to="/kontaktai" className="text-gray-400 hover:text-[#9bc329]">Kontaktai</Link></li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Kontaktai</h4>
-            <ul className="space-y-2 text-gray-400">
-              <li>Tel.: +370 617 85600</li>
-              <li>El. paštas: pardavimai@kalnore.lt</li>
-              <li>Darbo laikas: Pirm–Penkt: 08:00 – 17:00</li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Socialiniai tinklai</h4>
             <div className="flex space-x-4">
               <a 
                 href="https://www.facebook.com/Kalnore.lt" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-gray-400 hover:text-[#9bc329]"
+                className="text-gray-400 hover:text-[#9bc329] transition-colors duration-200"
               >
                 <Facebook size={24} />
               </a>
@@ -52,7 +31,7 @@ const Footer = () => {
                 href="https://www.instagram.com/kalnore.lt/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-gray-400 hover:text-[#9bc329]"
+                className="text-gray-400 hover:text-[#9bc329] transition-colors duration-200"
               >
                 <Instagram size={24} />
               </a>
@@ -60,16 +39,75 @@ const Footer = () => {
                 href="https://www.linkedin.com/company/kalnor%C4%97/about/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="text-gray-400 hover:text-[#9bc329]"
+                className="text-gray-400 hover:text-[#9bc329] transition-colors duration-200"
               >
                 <Linkedin size={24} />
               </a>
             </div>
           </div>
+          
+          <div>
+            <h4 className="text-lg font-semibold mb-6">Nuorodos</h4>
+            <ul className="space-y-3">
+              {[
+                { path: '/', label: 'Pagrindinis' },
+                { path: '/technika', label: 'Technika' },
+                { path: '/plastiko-rankoves', label: 'Plastiko Rankovės' },
+                { path: '/apie-mus', label: 'Apie mus' },
+                { path: '/kontaktai', label: 'Kontaktai' }
+              ].map(({ path, label }) => (
+                <li key={path}>
+                  <Link 
+                    to={path} 
+                    className="text-gray-400 hover:text-[#9bc329] transition-colors duration-200 flex items-center"
+                  >
+                    <span className="w-1.5 h-1.5 bg-[#9bc329] rounded-full mr-2"></span>
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="text-lg font-semibold mb-6">Kontaktai</h4>
+            <ul className="space-y-4">
+              <li className="flex items-start">
+                <MapPin className="w-5 h-5 text-[#9bc329] mr-3 mt-1 flex-shrink-0" />
+                <span className="text-gray-400">Sodų g.11, LT-71136, Šakiai</span>
+              </li>
+              <li className="flex items-center">
+                <Phone className="w-5 h-5 text-[#9bc329] mr-3 flex-shrink-0" />
+                <a href="tel:+37061785600" className="text-gray-400 hover:text-[#9bc329] transition-colors duration-200">
+                  +370 617 85600
+                </a>
+              </li>
+              <li className="flex items-center">
+                <Mail className="w-5 h-5 text-[#9bc329] mr-3 flex-shrink-0" />
+                <a href="mailto:pardavimai@kalnore.lt" className="text-gray-400 hover:text-[#9bc329] transition-colors duration-200">
+                  pardavimai@kalnore.lt
+                </a>
+              </li>
+              <li className="flex items-center">
+                <Clock className="w-5 h-5 text-[#9bc329] mr-3 flex-shrink-0" />
+                <span className="text-gray-400">Pirm–Penkt: 08:00 – 17:00</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div>
+            <h4 className="text-lg font-semibold mb-6">Rekvizitai</h4>
+            <ul className="space-y-2 text-gray-400">
+              <li>Įmonės kodas: 303228460</li>
+              <li>PVM kodas: LT100008307911</li>
+              <li className="pt-4">Bankas: „Swedbank" AB</li>
+              <li>A/S LT87 7300 0101 4992 5182</li>
+            </ul>
+          </div>
         </div>
         
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-          <p>© 2025 UAB Kalnorė. Visos teisės saugomos.</p>
+        <div className="border-t border-gray-800 py-8 text-center">
+          <p className="text-gray-400">© {new Date().getFullYear()} UAB Kalnorė. Visos teisės saugomos.</p>
         </div>
       </div>
     </footer>
