@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
 
 interface ProductDetails {
   title: string;
@@ -13,6 +14,7 @@ interface ProductDetails {
 
 interface ProductSectionProps extends ProductDetails {
   manufacturer: string;
+  id?: string;
 }
 
 const ProductSection = ({ 
@@ -22,12 +24,32 @@ const ProductSection = ({
   fullDescription,
   origin, 
   specs = [],
-  manufacturer
+  manufacturer,
+  id
 }: ProductSectionProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const location = useLocation();
+  const [isHighlighted, setIsHighlighted] = useState(false);
+
+  useEffect(() => {
+    if (location.hash === `#${id?.toLowerCase()}`) {
+      setIsHighlighted(true);
+      setIsExpanded(true);
+      const element = document.getElementById(id?.toLowerCase() || '');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      setTimeout(() => setIsHighlighted(false), 2000);
+    }
+  }, [location.hash, id]);
 
   return (
-    <div className="bg-white rounded-2xl overflow-hidden transition-all duration-500 ease-in-out hover:shadow-2xl">
+    <div 
+      id={id?.toLowerCase()}
+      className={`bg-white rounded-2xl overflow-hidden transition-all duration-500 ease-in-out ${
+        isHighlighted ? 'ring-4 ring-[#9bc329]' : 'hover:shadow-2xl'
+      }`}
+    >
       <div className="aspect-w-16 aspect-h-9 relative group cursor-pointer" onClick={() => setIsExpanded(!isExpanded)}>
         <img
           src={imageUrl}
@@ -95,6 +117,7 @@ const Products = () => {
   const products = {
     kobzarenko: [
       {
+        id: 'kobzarenko-zpm',
         title: "Grūdų kimštuvai ir iškrovimo mašinos",
         description: "ZAVOD KOBZARENKO grūdų kimštuvai (ZPM) ir iškrovimo mašinos (ZRM) yra patikimi įrenginiai, skirti didelės apimties grūdų laikymui.",
         imageUrl: "https://i.imgur.com/NVAhII9.png",
@@ -114,6 +137,7 @@ Tinka ūkiams, kurie ieško lankstaus sprendimo grūdų saugojimui be didelių i
         ]
       },
       {
+        id: 'perkrovimo-puspriekabes',
         title: "Perkrovimo puspriekabės",
         description: "PBN serijos puspriekabės maksimaliai pagreitina grūdų transportavimo procesus derliaus nuėmimo metu.",
         imageUrl: "https://i.imgur.com/CRdkCKU.png",
@@ -213,6 +237,7 @@ Optimalus pasirinkimas tiems, kas nori sumažinti darbo sąnaudas ir dirbti su m
     ],
     agripak: [
       {
+        id: 'agripak-r9',
         title: "Grūdų kimštuvai (R9 / RW9)",
         description: "R9 ir RW9 modeliai sukurti grūdų saugojimui plastiko rankovėse. Tinka ir išspaudoms.",
         imageUrl: "https://i.imgur.com/qjtCSF0.png",
@@ -283,6 +308,7 @@ Puikus pasirinkimas profesionaliems ūkininkams, kurie vertina tikslumą, higien
     ],
     richiger: [
       {
+        id: 'richiger-r990',
         title: "Grūdų kimštuvai (R990 / R1090)",
         description: "R990 ir R1090 modeliai užtikrina greitą ir patikimą kimšimą į plastiko rankoves. Našumas iki 900 t/h.",
         imageUrl: "https://i.imgur.com/pr6bgQ4.png",
@@ -334,6 +360,45 @@ Geriausia alternatyva didelėms ir brangioms stacionarioms traiškymo sistemoms.
         ]
       }
     ],
+    fieldsfireman: [
+      {
+        id: 'fields-fireman',
+        title: "FIELDS FIREMAN gaisro gesintuvas žemės ūkiui",
+        description: "Karštos ir sausos vasaros kelia didelę grėsmę žemės ūkio technikai – ypač kombainams ir traktoriams. 75 % visų technikos gaisrų prasideda variklio skyriuje.",
+        imageUrl: "https://i.imgur.com/lwZzbPx.png",
+        fullDescription: `Karštos ir sausos vasaros kelia didelę grėsmę žemės ūkio technikai – ypač kombainams ir traktoriams. 75 % visų technikos gaisrų prasideda variklio skyriuje.
+
+🔥 800+ žemės ūkio technikos gaisrų užfiksuota per paskutinį sezoną vien JK.
+🔥 250°C – temperatūra, išmatuota išmetimo sistemoje ir pjaunamojoje.
+🔥 96 gesintuvų efektyvumas – viename įrenginyje.
+
+✅ Kodėl verta rinktis Fields Fireman?
+Gesintuvas paruoštas per 5 sek.
+
+Gesinimo trukmė – iki 20 min.
+
+Tinka putų ir vandens gesinimui
+
+Galima montuoti prie bet kokio traktoriaus
+
+Naudojamas ir kaip frontinis svoris (1200 kg)
+
+Patogu naudoti technikos ir aikštelių valymui
+
+Oficialiai patvirtintas priešgaisrinės apsaugos tarnybų
+
+Apsaugokite savo derlių, techniką ir investicijas – pasiruoškite netikėtoms situacijoms su Fields Fireman.`,
+        origin: "Jungtinė Karalystė",
+        specs: [
+          "Gesintuvas paruoštas per 5 sek.",
+          "Gesinimo trukmė – iki 20 min.",
+          "Tinka putų ir vandens gesinimui",
+          "Galima montuoti prie bet kokio traktoriaus",
+          "Svoris: 1200 kg",
+          "Oficialiai patvirtintas priešgaisrinės apsaugos tarnybų"
+        ]
+      }
+    ],
     other: [
       {
         title: "Vogelscheuche Aitvarai",
@@ -371,23 +436,22 @@ Tausokite techniką ir laiką naudodami efektyviausią valytuvą rinkoje.`,
     ]
   };
 
+  const location = useLocation();
+  
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.slice(1));
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  }, [location]);
+
   return (
     <>
       <Helmet>
         <title>Žemės ūkio technika | Kalnorė</title>
         <meta name="description" content="Profesionali žemės  ūkio technika: grūdų kimštuvai, perkrovimo puspriekabės, vagonų pakrovimo įranga. KOBZARENKO, AGRIPAK, RICHIGER ir kiti patikimi gamintojai." />
-        <meta name="keywords" content="žemės ūkio technika, grūdų kimštuvai, perkrovimo puspriekabės, KOBZARENKO, AGRIPAK, RICHIGER" />
-        <link rel="canonical" href="https://www.kalnore.lt/technika" />
-        
-        <meta property="og:title" content="Žemės ūkio technika | Kalnorė" />
-        <meta property="og:description" content="Profesionali žemės ūkio technika: grūdų kimštuvai, perkrovimo puspriekabės, vagonų pakrovimo įranga." />
-        <meta property="og:image" content="https://kalnore.lt/wp-content/uploads/2021/01/kimstuvasiskrovimas1.jpg" />
-        <meta property="og:url" content="https://www.kalnore.lt/technika" />
-        
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Žemės ūkio technika | Kalnorė" />
-        <meta name="twitter:description" content="Profesionali žemės ūkio technika nuo patikimų gamintojų." />
-        <meta name="twitter:image" content="https://kalnore.lt/wp-content/uploads/2021/01/kimstuvasiskrovimas1.jpg" />
       </Helmet>
 
       <div className="bg-gray-50 min-h-screen">
@@ -402,7 +466,7 @@ Tausokite techniką ir laiką naudodami efektyviausią valytuvą rinkoje.`,
 
           <div className="space-y-24">
             {/* KOBZARENKO Section */}
-            <section>
+            <section id="kobzarenko">
               <div className="flex items-center justify-between mb-12">
                 <h2 className="text-3xl font-bold text-gray-900">KOBZARENKO</h2>
                 <div className="h-1 flex-grow mx-8 bg-gradient-to-r from-[#9bc329]/20 to-[#9bc329]"></div>
@@ -415,7 +479,7 @@ Tausokite techniką ir laiką naudodami efektyviausią valytuvą rinkoje.`,
             </section>
 
             {/* AGRIPAK Section */}
-            <section>
+            <section id="agripak">
               <div className="flex items-center justify-between mb-12">
                 <h2 className="text-3xl font-bold text-gray-900">AGRIPAK</h2>
                 <div className="h-1 flex-grow mx-8 bg-gradient-to-r from-[#9bc329]/20 to-[#9bc329]"></div>
@@ -428,7 +492,7 @@ Tausokite techniką ir laiką naudodami efektyviausią valytuvą rinkoje.`,
             </section>
 
             {/* RICHIGER Section */}
-            <section>
+            <section id="richiger">
               <div className="flex items-center justify-between mb-12">
                 <h2 className="text-3xl font-bold text-gray-900">RICHIGER</h2>
                 <div className="h-1 flex-grow mx-8 bg-gradient-to-r from-[#9bc329]/20 to-[#9bc329]"></div>
@@ -436,6 +500,19 @@ Tausokite techniką ir laiką naudodami efektyviausią valytuvą rinkoje.`,
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {products.richiger.map((product, index) => (
                   <ProductSection key={index} {...product} manufacturer="RICHIGER" />
+                ))}
+              </div>
+            </section>
+
+            {/* FIELDS FIREMAN Section */}
+            <section id="fields-fireman">
+              <div className="flex items-center justify-between mb-12">
+                <h2 className="text-3xl font-bold text-gray-900">FIELDS FIREMAN</h2>
+                <div className="h-1 flex-grow mx-8 bg-gradient-to-r from-[#9bc329]/20 to-[#9bc329]"></div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {products.fieldsfireman.map((product, index) => (
+                  <ProductSection key={index} {...product} manufacturer="FIELDS FIREMAN" />
                 ))}
               </div>
             </section>
