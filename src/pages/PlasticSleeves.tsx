@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Shield, Leaf, BarChart3, Sun, ArrowRight, Check } from 'lucide-react';
+import { Shield, Leaf, BarChart3, Sun, ArrowRight, Check, ChevronRight, Clock, Package, Truck, DollarSign, Warehouse } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import StatCounter from '../components/StatCounter';
+import Modal from '../components/Modal';
 
 const PlasticSleeves = () => {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   const benefits = [
     {
       icon: <Shield className="w-8 h-8 text-[#9bc329]" />,
@@ -39,6 +42,74 @@ const PlasticSleeves = () => {
     "Mažos eksploatacijos išlaidos"
   ];
 
+  const processSteps = [
+    {
+      icon: <Package className="w-6 h-6" />,
+      title: "Pasiruošimas",
+      description: "Rankovių ir įrangos paruošimas darbui",
+      time: "30 min"
+    },
+    {
+      icon: <Truck className="w-6 h-6" />,
+      title: "Kimšimas",
+      description: "Grūdų kimšimas į rankoves",
+      time: "2-4 val"
+    },
+    {
+      icon: <Clock className="w-6 h-6" />,
+      title: "Saugojimas",
+      description: "Saugus grūdų laikymas",
+      time: "Iki 18 mėn"
+    },
+    {
+      icon: <Warehouse className="w-6 h-6" />,
+      title: "Iškrovimas",
+      description: "Grūdų iškrovimas pagal poreikį",
+      time: "2-3 val"
+    }
+  ];
+
+  const galleryImages = [
+    {
+      url: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854",
+      title: "Grūdų laukai",
+      description: "Derliaus nuėmimas ir saugojimas"
+    },
+    {
+      url: "https://i.imgur.com/eDmH1po.png",
+      title: "Plastiko rankovės",
+      description: "Modernus saugojimo sprendimas"
+    },
+    {
+      url: "https://i.imgur.com/uVORlUM.jpeg",
+      title: "Grūdų kimšimas",
+      description: "Efektyvus procesas"
+    }
+  ];
+
+  const costComparison = [
+    {
+      type: "Tradicinis sandėlis",
+      costs: [
+        "Didelės pradinės investicijos",
+        "Pastovi priežiūra",
+        "Nelanksčios išlaidos",
+        "Papildomi mokesčiai"
+      ],
+      icon: <DollarSign className="w-12 h-12 text-red-500" />
+    },
+    {
+      type: "Plastiko rankovės",
+      costs: [
+        "Mažos pradinės išlaidos",
+        "Minimali priežiūra",
+        "Mokate tik už naudojamą talpą",
+        "Nėra papildomų mokesčių"
+      ],
+      icon: <DollarSign className="w-12 h-12 text-[#9bc329]" />
+    }
+  ];
+
   return (
     <>
       <Helmet>
@@ -46,76 +117,100 @@ const PlasticSleeves = () => {
         <meta name="description" content="Modernus grūdų saugojimo būdas plastiko rankovėse - ekonomiškas ir efektyvus sprendimas ūkininkams." />
       </Helmet>
 
-      <div className="relative bg-gradient-to-b from-gray-900 to-gray-800 text-white py-24">
-        <div className="absolute inset-0 overflow-hidden">
-          <img
-            src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=2400&q=80"
-            alt="Grūdų laukai"
-            className="w-full h-full object-cover opacity-20"
-          />
+      {/* Hero Section with Video Background */}
+      <div className="relative min-h-screen flex items-center justify-center">
+        <div className="absolute inset-0">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+            poster="https://images.unsplash.com/photo-1500937386664-56d1dfef3854"
+          >
+            <source src="https://kalnore.lt/wp-content/uploads/2021/01/Kalnore-Video-1.mp4" type="video/mp4" />
+          </video>
+          <div className="absolute inset-0 bg-black bg-opacity-60" />
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">Plastiko Rankovės</h1>
-            <p className="text-xl text-gray-300 mb-8">
-              Modernus ir ekonomiškas grūdų saugojimo sprendimas, leidžiantis efektyviai valdyti derlių be brangių sandėlių.
-            </p>
+        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center text-white">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            Revoliucinis Grūdų Saugojimo Sprendimas
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 text-gray-200">
+            Modernios plastiko rankovės - ekonomiškas ir efektyvus būdas saugoti derlių be brangių sandėlių
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               to="/kontaktai"
-              className="inline-flex items-center px-6 py-3 bg-[#9bc329] text-white rounded-lg hover:bg-opacity-90 transition-colors group"
+              className="inline-flex items-center px-8 py-4 bg-[#9bc329] text-white rounded-lg hover:bg-opacity-90 transition-colors group"
             >
               Sužinoti daugiau
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+            </Link>
+            <Link
+              to="/technika"
+              className="inline-flex items-center px-8 py-4 bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              Peržiūrėti įrangą
+              <ChevronRight className="ml-2" />
             </Link>
           </div>
         </div>
       </div>
 
-      <div className="bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="prose prose-lg">
-              <p className="text-gray-600 leading-relaxed mb-6">
-                Grūdų saugojimas plastiko rankovėse yra modernus, patikrintas ir visame pasaulyje taikomas metodas, leidžiantis saugiai laikyti derlių lauko sąlygomis be poreikio statyti brangius sandėlius. Ši technologija ypač išplito Argentinoje, kur daugiau nei pusė visų grūdų yra saugoma būtent šiuo būdu.
-              </p>
-              <p className="text-gray-600 leading-relaxed mb-8">
-                Naudojant plastiko rankoves, ūkininkai gali lanksčiai plėsti saugojimo talpą pagal sezono derlių, nepriklausyti nuo komercinių sandėlių ir priimti palankesnius pardavimo sprendimus nebijodami laiko spaudimo.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Link
-                  to="/technika"
-                  className="inline-flex items-center px-6 py-3 bg-[#9bc329] text-white rounded-lg hover:bg-opacity-90 transition-colors group"
+      {/* Process Timeline Section */}
+      <div className="bg-white py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Paprastas ir Efektyvus Procesas</h2>
+            <p className="text-xl text-gray-600">Keturi žingsniai iki saugaus derliaus</p>
+          </div>
+          <div className="relative">
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-[#9bc329]/20" />
+            <div className="space-y-16">
+              {processSteps.map((step, index) => (
+                <div
+                  key={index}
+                  className={`flex items-center ${
+                    index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                  }`}
                 >
-                  Peržiūrėti įrangą
-                  <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-200" />
-                </Link>
-                <Link
-                  to="/kontaktai"
-                  className="inline-flex items-center px-6 py-3 border-2 border-[#9bc329] text-[#9bc329] rounded-lg hover:bg-[#9bc329] hover:text-white transition-colors"
-                >
-                  Susisiekti
-                </Link>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="absolute -inset-4 bg-[#9bc329]/10 rounded-2xl transform rotate-3"></div>
-              <img
-                src="https://i.imgur.com/eDmH1po.png"
-                alt="Plastiko rankovės"
-                className="relative rounded-xl shadow-2xl w-full"
-              />
+                  <div className={`flex-1 ${index % 2 === 0 ? 'md:text-right md:pr-12' : 'md:text-left md:pl-12'}`}>
+                    <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+                      <h3 className="text-xl font-bold mb-2">{step.title}</h3>
+                      <p className="text-gray-600 mb-2">{step.description}</p>
+                      <div className="flex items-center text-sm text-[#9bc329] font-semibold gap-1">
+                        <Clock className="w-4 h-4" />
+                        {step.time}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="relative flex items-center justify-center w-12 h-12 bg-[#9bc329] rounded-full z-10">
+                    {step.icon}
+                  </div>
+                  <div className="flex-1" />
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </div>
 
-      <div className="bg-gray-50 py-16">
+      {/* Benefits Grid */}
+      <div className="bg-gray-50 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Kodėl Verta Rinktis Plastiko Rankoves?</h2>
+            <p className="text-xl text-gray-600">Modernūs sprendimai šiuolaikiniam ūkininkui</p>
+          </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {benefits.map((benefit, index) => (
-              <div key={index} className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <div className="mb-4">{benefit.icon}</div>
-                <h3 className="text-xl font-bold mb-2">{benefit.title}</h3>
+              <div 
+                key={index}
+                className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              >
+                <div className="mb-6">{benefit.icon}</div>
+                <h3 className="text-xl font-bold mb-4">{benefit.title}</h3>
                 <p className="text-gray-600">{benefit.description}</p>
               </div>
             ))}
@@ -123,37 +218,74 @@ const PlasticSleeves = () => {
         </div>
       </div>
 
-      <div className="bg-white py-16">
+      {/* Interactive Gallery */}
+      <div className="bg-white py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl font-bold mb-8">Kodėl verta rinktis plastiko rankoves?</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {features.map((feature, index) => (
-                  <div key={index} className="flex items-center space-x-3">
-                    <Check className="w-5 h-5 text-[#9bc329] flex-shrink-0" />
-                    <span className="text-gray-700">{feature}</span>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Grūdų Saugojimo Galerija</h2>
+            <p className="text-xl text-gray-600">Pažvelkite į modernų grūdų saugojimo procesą</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {galleryImages.map((image, index) => (
+              <div
+                key={index}
+                className="relative group cursor-pointer overflow-hidden rounded-xl"
+                onClick={() => setSelectedImage(image.url)}
+              >
+                <img
+                  src={image.url}
+                  alt={image.title}
+                  className="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                    <h3 className="text-lg font-bold mb-2">{image.title}</h3>
+                    <p className="text-sm">{image.description}</p>
                   </div>
-                ))}
+                </div>
               </div>
-            </div>
-            <div className="relative">
-              <div className="absolute -inset-4 bg-[#9bc329]/10 rounded-2xl transform -rotate-3"></div>
-              <img
-                src="https://i.imgur.com/uVORlUM.jpeg"
-                alt="Plastiko rankovių privalumai"
-                className="relative rounded-xl shadow-2xl w-full"
-              />
-            </div>
+            ))}
           </div>
         </div>
       </div>
 
-      <div className="bg-gray-50 py-16">
+      {/* Cost Comparison */}
+      <div className="bg-gray-50 py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">Įspūdingi skaičiai</h2>
-            <p className="text-gray-600">Pasitikėjimas ir patirtis skaičiais</p>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Išlaidų Palyginimas</h2>
+            <p className="text-xl text-gray-600">Tradicinis sandėliavimas vs. Plastiko rankovės</p>
+          </div>
+          <div className="grid md:grid-cols-2 gap-12">
+            {costComparison.map((option, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-2xl font-bold">{option.type}</h3>
+                  {option.icon}
+                </div>
+                <ul className="space-y-4">
+                  {option.costs.map((cost, costIndex) => (
+                    <li key={costIndex} className="flex items-center">
+                      <Check className="w-5 h-5 text-gray-400 mr-3" />
+                      <span className="text-gray-600">{cost}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Statistics Section */}
+      <div className="bg-white py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Įspūdingi Skaičiai</h2>
+            <p className="text-xl text-gray-600">Pasitikėjimas ir patirtis skaičiais</p>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-white rounded-xl p-8 shadow-lg transform hover:scale-105 transition-transform duration-300">
@@ -175,32 +307,47 @@ const PlasticSleeves = () => {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-white py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-gradient-to-r from-gray-900 to-gray-800 rounded-2xl p-12 text-center text-white">
-            <h2 className="text-3xl font-bold mb-6">Pradėkite taupyti jau šiandien</h2>
-            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
-              Sužinokite, kaip plastiko rankovės gali padėti jūsų ūkiui. 
-              Mūsų ekspertai pasiruošę atsakyti į visus jūsų klausimus.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link
-                to="/kontaktai"
-                className="inline-flex items-center px-8 py-4 bg-[#9bc329] text-white rounded-lg hover:bg-opacity-90 transition-colors group"
-              >
-                Gauti pasiūlymą
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-200" />
-              </Link>
-              <Link
-                to="/technika"
-                className="inline-flex items-center px-8 py-4 bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-colors"
-              >
-                Peržiūrėti įrangą
-              </Link>
-            </div>
+      <div className="bg-gradient-to-r from-gray-900 to-gray-800 py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            Pradėkite Taupyti Jau Šiandien
+          </h2>
+          <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
+            Sužinokite, kaip plastiko rankovės gali padėti jūsų ūkiui. 
+            Mūsų ekspertai pasiruošę atsakyti į visus jūsų klausimus.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              to="/kontaktai"
+              className="inline-flex items-center px-8 py-4 bg-[#9bc329] text-white rounded-lg hover:bg-opacity-90 transition-colors group"
+            >
+              Gauti pasiūlymą
+              <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-200" />
+            </Link>
+            <Link
+              to="/technika"
+              className="inline-flex items-center px-8 py-4 bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              Peržiūrėti įrangą
+              <ChevronRight className="ml-2" />
+            </Link>
           </div>
         </div>
       </div>
+
+      {/* Image Modal */}
+      <Modal
+        isOpen={!!selectedImage}
+        onClose={() => setSelectedImage(null)}
+      >
+        {selectedImage && (
+          <img
+            src={selectedImage}
+            alt="Gallery"
+            className="w-full h-auto max-h-[80vh] object-contain"
+          />
+        )}
+      </Modal>
     </>
   );
 };

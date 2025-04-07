@@ -37,7 +37,15 @@ const ProductSection = ({
       setIsExpanded(true);
       const element = document.getElementById(id?.toLowerCase() || '');
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Calculate header height (80px) plus some padding (32px)
+        const offset = 112;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
       }
       setTimeout(() => setIsHighlighted(false), 2000);
     }
@@ -442,7 +450,15 @@ Tausokite techniką ir laiką naudodami efektyviausią valytuvą rinkoje.`,
     if (location.hash) {
       const element = document.getElementById(location.hash.slice(1));
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // Calculate header height (80px) plus some padding (32px)
+        const offset = 112;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - offset;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
       }
     }
   }, [location]);
