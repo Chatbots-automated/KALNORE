@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Facebook, Instagram, Linkedin } from 'lucide-react';
+import { Menu, X, Facebook, Instagram, Linkedin, ChevronDown } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -15,6 +16,13 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const manufacturers = [
+    { name: 'KOBZARENKO', id: 'kobzarenko' },
+    { name: 'AGRIPAK', id: 'agripak' },
+    { name: 'RICHIGER', id: 'richiger' },
+    { name: 'FIELDS FIREMAN', id: 'fields-fireman' }
+  ];
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
@@ -37,25 +45,54 @@ const Navbar = () => {
             <div className="flex items-center space-x-8 mr-8">
               {[
                 { path: '/', label: 'Pagrindinis' },
-                { path: '/technika', label: 'Technika' },
+                { 
+                  path: '/technika', 
+                  label: 'Technika',
+                  hasDropdown: true,
+                  dropdownId: 'technika'
+                },
                 { path: '/plastiko-rankoves', label: 'Plastiko Rankovės' },
                 { path: '/apie-mus', label: 'Apie Mus' },
                 { path: '/kontaktai', label: 'Kontaktai' }
-              ].map(({ path, label }) => (
-                <Link
-                  key={path}
-                  to={path}
-                  className={`relative font-medium transition-all duration-300 group ${
-                    location.pathname === path
-                      ? 'text-[#9bc329]'
-                      : 'text-gray-700 hover:text-[#9bc329]'
-                  }`}
-                >
-                  {label}
-                  <span className={`absolute -bottom-1 left-0 w-full h-0.5 bg-[#9bc329] transform origin-left transition-transform duration-300 ${
-                    location.pathname === path ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
-                  }`}></span>
-                </Link>
+              ].map(({ path, label, hasDropdown, dropdownId }) => (
+                <div key={path} className="relative group">
+                  <Link
+                    to={path}
+                    className={`relative font-medium transition-all duration-300 flex items-center group ${
+                      location.pathname === path
+                        ? 'text-[#9bc329]'
+                        : 'text-gray-700 hover:text-[#9bc329]'
+                    }`}
+                    onMouseEnter={() => hasDropdown && setActiveDropdown(dropdownId)}
+                    onMouseLeave={() => setActiveDropdown(null)}
+                  >
+                    {label}
+                    {hasDropdown && (
+                      <ChevronDown className="ml-1 w-4 h-4" />
+                    )}
+                    <span className={`absolute -bottom-1 left-0 w-full h-0.5 bg-[#9bc329] transform origin-left transition-transform duration-300 ${
+                      location.pathname === path ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                    }`}></span>
+                  </Link>
+                  {hasDropdown && activeDropdown === dropdownId && (
+                    <div 
+                      className="absolute top-full left-0 w-48 py-2 mt-1 bg-white rounded-lg shadow-lg"
+                      onMouseEnter={() => setActiveDropdown(dropdownId)}
+                      onMouseLeave={() => setActiveDropdown(null)}
+                    >
+                      {manufacturers.map((manufacturer) => (
+                        <Link
+                          key={manufacturer.id}
+                          to={`/technika#${manufacturer.id}`}
+                          className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#9bc329]"
+                          onClick={() => setActiveDropdown(null)}
+                        >
+                          {manufacturer.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
             
