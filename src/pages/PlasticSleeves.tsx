@@ -117,23 +117,16 @@ const PlasticSleeves = () => {
         <meta name="description" content="Modernus grūdų saugojimo būdas plastiko rankovėse - ekonomiškas ir efektyvus sprendimas ūkininkams." />
       </Helmet>
 
-      {/* Hero Section with Video Background */}
-      <div className="relative min-h-screen flex items-center justify-center">
+      {/* Hero Section with Parallax Background */}
+      <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover"
-            poster="https://images.unsplash.com/photo-1500937386664-56d1dfef3854"
-          >
-            <source src="https://kalnore.lt/wp-content/uploads/2021/01/Kalnore-Video-1.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-black bg-opacity-60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70 z-10" />
+          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&w=2400&q=80')] bg-cover bg-center bg-no-repeat transform scale-110" style={{ transform: 'scale(1.1)' }}>
+            <div className="absolute inset-0 bg-black opacity-30" />
+          </div>
         </div>
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center text-white">
-          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+        <div className="relative z-20 max-w-4xl mx-auto px-4 text-center">
+          <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight text-white">
             Revoliucinis Grūdų Saugojimo Sprendimas
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-gray-200">
